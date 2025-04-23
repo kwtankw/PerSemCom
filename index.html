@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语义通信展示</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>语义通信过程展示</h1>
+        <p>生成的语音和文本记录</p>
+    </header>
+    
+    <main>
+        <!-- 示例会话1 -->
+        <section class="session">
+            <h2>会话1 - 2023年11月15日</h2>
+            <div class="text-content">
+                <h3>文本内容</h3>
+                <div class="text-display" id="text-session1">
+                    <!-- 文本将通过JavaScript加载 -->
+                    加载中...
+                </div>
+            </div>
+            <div class="audio-player">
+                <h3>语音记录</h3>
+                <audio controls>
+                    <source src="audio/session1.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频元素
+                </audio>
+                <p>音频时长: 1分23秒</p>
+            </div>
+        </section>
+        
+        <!-- 示例会话2 -->
+        <section class="session">
+            <h2>会话2 - 2023年11月16日</h2>
+            <div class="text-content">
+                <h3>文本内容</h3>
+                <div class="text-display" id="text-session2">
+                    加载中...
+                </div>
+            </div>
+            <div class="audio-player">
+                <h3>语音记录</h3>
+                <audio controls>
+                    <source src="audio/session2.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频元素
+                </audio>
+                <p>音频时长: 2分15秒</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>最后更新: <span id="update-date"></span></p>
+    </footer>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
