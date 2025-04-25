@@ -1,60 +1,450 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>语义通信展示</title>
+    <title>Semantic Communication Demo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>语义通信过程展示</h1>
-        <p>生成的语音和文本记录</p>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>PerSemCom: a Personalized Semantic Communication Framework for Speech Transmission</h1>
+            
+            <div class="author-info">
+                <div class="author-name"><strong>Kaiwen Tan, Haitao Zhao, Li zhou, Yichi Zhang, Jun Xiong, Yuyuan Zhang, and Jibo Wei</strong></div>
+                <div class="author-affiliation"><strong>National University of Defense Technology</strong></div>
+                <!-- <div class="contact">Contact: 1326097124@qq.com</div> -->
+            </div>
+            
+            <div class="abstract">
+                <p>By focusing on the intrinsic meaning of information, semantic communication (SemCom) has been taken as a fundamental paradigm shift from physical bit transmission to personalized semantic service. In this paper, we propose a semantic-driven framework for speech communication, integrating speech recognition and generation technologies to innovatively combine speaker-adaptive acoustic features with semantic information, thereby enabling precise personalized communication. Specifically, we extract and transmit text-related semantic features from speech at transmitter, and design a low-complexity decoder to recover text transcription at receiver. In order to overcome the influence of channel distortion, we design a semantic corrector coupled with multi-domain knowledge, using channel knowledge and context knowledge to further modify the prediction. We further establish a speaker embedding vector knowledge base and achieve high-fidelity speech reconstruction through quantitative modeling of speaker-specific acoustic features. The complexity analysis and latency measurements show that this scheme has competitive advantages in computational efficiency and real-time performance. Extensive experiments demonstrate that the proposed method has significant advantages in both objective and subjective measurements over the state-of-the-art approaches.</p>
+            </div>
+            <div class="paper-image">
+                <img src="Figure/fig.png" alt="Description of your image" style="max-width: 65%; display: block; margin: 20px auto;">
+                <p class="image-caption" style="text-align: center; font-style: Tahoma;"><strong>Proposed PerSemCom framework.</strong></p>
+            </div>
+        </div>
     </header>
     
     <main>
-        <!-- 示例会话1 -->
+        <!-- Session 1 Example -->
         <section class="session">
-            <h2>会话1 - 2023年11月15日</h2>
-            <div class="text-content">
-                <h3>文本内容</h3>
-                <div class="text-display" id="text-session1">
-                    <!-- 文本将通过JavaScript加载 -->
-                    加载中...
-                </div>
+            <h2>AWGN Channel, SNR = -10 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-10.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">the lodge in which uncas was confined was in the very center of the village and in a situation perhaps more difficult than any other to approach or leave without observation</div>
             </div>
-            <div class="audio-player">
-                <h3>语音记录</h3>
-                <audio controls>
-                    <source src="audio/session1.mp3" type="audio/mpeg">
-                    您的浏览器不支持音频元素
-                </audio>
-                <p>音频时长: 1分23秒</p>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-10_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemCom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-10_p.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">the <em><strong>lod</strong></em> in which uncas was confined was in the very <em><strong>cent</strong></em> of the village and a situation perhaps more difficult than any other to approach or leave without observation</div>
+            </div>
+        </section>
+        <!-- Session 2 Example -->
+        <section class="session">
+            <h2>AWGN Channel, SNR = -10 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-10_1.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">he refused at first to listen to the careful advice it was repugnant to his liberal nature</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-10_1_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-10_1_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth"><em><strong>here</strong></em> refused at first to listen to the careful advice it was repugnant to his liberal nature</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>AWGN Channel, SNR = -6 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-6.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">give me a check for a hundred and fifty and ill turn over to you the forged check and quash further proceedings</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-6_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-6_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">give me a check for a hundred and fifty and ill turn over to you the forged check and quash further proceedings</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>AWGN Channel, SNR = -6 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-6_1.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">but it is not with a view to distinction that you should cultivate this talent if you consult your own happiness</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-6_1_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_-6_1_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">but it is not with a view to distinction that you should cultivate this talent if you consult your own happiness</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>AWGN Channel, SNR = 2 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_2.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">THEY WERE VOYAGING ACROSS THE DESERTS OF THE SKY A HOST OF NOMADS ON THE MARCH VOYAGING HIGH OVER IRELAND WESTWARD BOUND</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_2_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_2_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">THEY WERE VOYAGING ACROSS THE DESERTS OF THE SKY A HOST OF NOMADS ON THE MARCH VOYAGING HIGH OVER IRELAND WESTWARD BOUND</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>AWGN Channel, SNR = 2 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_2_1.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">THIS OUTWARD MUTABILITY INDICATED AND DID NOT MORE THAN FAIRLY EXPRESS THE VARIOUS PROPERTIES OF HER INNER LIFE</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_2_1_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/a_2_1_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">THIS OUTWARD MUTABILITY INDICATED AND DID NOT MORE THAN FAIRLY EXPRESS THE VARIOUS PROPERTIES OF HER INNER LIFE</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>Rayleigh Fading Channel, SNR = -10 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-10.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">if you are not then knocked on the head your being a non composser will protect you and youll then have a good reason to expect to die in your bed</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-10_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-10_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">if you are not then <em><strong>knockedked</strong></em> on the head your being a <em><strong>nineon composter</strong></em> will protect you and <em><strong>you</strong></em> then have a good reason to expect to die in your bed</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>Rayleigh Fading Channel, SNR = -10 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-10_1.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">A LARGE OPEN FIREPLACE WITH RUSTY DOGS IN IT AND A BARE BOARDED FLOOR AT THE FAR END FLEECES OF WOOL STACKED UP IN THE MIDDLE OF THE FLOOR SOME EMPTY CORN BAGS</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-10_1_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-10_1_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">A LARGE OPEN <em><strong>FIREPACE</strong></em> WITH RUSTY DOGS <em><strong>INIT</strong></em> AND A BARE <em><strong>BORDER</strong></em> FLOOR AT THE FAR END FLEECES OF <em><strong>WOOD</strong></em> STACKED UP IN THE MIDDLE OF THE FLOOR SOME EMPTY CORN <em><strong>BUGS</strong></em></div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>Rayleigh Fading Channel, SNR = -6 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-6.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">her feeble health gave her her yielding manner for she could never oppose any one without gathering up all her strength for the struggle</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-6_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-6_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth"><em><strong>per</strong></em> feeble health <em><strong>leave</strong></em> her her yielding manner for she could never oppose any without gathering up all her strength for the struggle</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>Rayleigh Fading Channel, SNR = -6 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-6_1.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">the definition of my experience is difficult broadly speaking it is everything that is connected with what i am experiencing now by certain links of which the various forms of memory are among the most important</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-6_1_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_-6_1_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">the definition of my experience is difficult broadly speaking it is everything that is connected with what i am <em><strong>expericing</strong></em> now by certain links of which the various forms of memory are among the most important</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>Rayleigh Fading Channel, SNR = 2 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_2.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">THE ARMY FOUND THE PEOPLE IN POVERTY AND LEFT THEM IN COMPARATIVE WEALTH</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_2_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_2_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">THE ARMY FOUND THE PEOPLE IN POVERTY AND LEFT THEM IN COMPARATIVE WEALTH</div>
+            </div>
+        </section>
+        <section class="session">
+            <h2>Rayleigh Fading Channel, SNR = 2 dB</h2>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Ground Truth</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_2_1.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">I HOPE THEE TOLD THE ELDERS THAT FATHER AND I ARE RESPONSIBLE FOR THE PIANO AND THAT MUCH AS THEE LOVES MUSIC THEE IS NEVER IN THE ROOM WHEN IT IS PLAYED</div>
+            </div>
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>DeepSC-S</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_2_1_d.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <!-- <div class="text-display" id="text-groundtruth">then heaving a heavy sigh probably among the last he ever drew in pining for a condition he had so long abandoned he added it is what i would wish to practise myself as one without a cross of blood though it is not always easy to deal with an indian as you would with a fellow christian</div> -->
+            </div>
+
+            <div class="method-section">
+                <div class="text-content">
+                    <h3>Proposed PerSemcom</h3>
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="assets/speech/r_2_1_p.flac" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </div>
+                    <div class="text-display" id="text-groundtruth">I HOPE THEE TOLD THE ELDERS THAT FATHER AND I ARE RESPONSIBLE FOR THE PIANO AND THAT MUCH AS THEE LOVES MUSIC THEE IS NEVER IN THE ROOM WHEN IT IS PLAYED</div>
             </div>
         </section>
         
-        <!-- 示例会话2 -->
-        <section class="session">
-            <h2>会话2 - 2023年11月16日</h2>
-            <div class="text-content">
-                <h3>文本内容</h3>
-                <div class="text-display" id="text-session2">
-                    加载中...
-                </div>
-            </div>
-            <div class="audio-player">
-                <h3>语音记录</h3>
-                <audio controls>
-                    <source src="audio/session2.mp3" type="audio/mpeg">
-                    您的浏览器不支持音频元素
-                </audio>
-                <p>音频时长: 2分15秒</p>
-            </div>
-        </section>
+        
+        
     </main>
     
     <footer>
-        <p>最后更新: <span id="update-date"></span></p>
+        <p>@Made by Kaiwen Tan <span id="update-date"></span></p>
     </footer>
     
     <script src="scripts.js"></script>

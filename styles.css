@@ -1,11 +1,11 @@
 /* 基本样式 */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Tahoma', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     margin: 0;
-    padding: 20px;
+    padding: 10px;
     color: #333;
-    max-width: 1000px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -15,9 +15,27 @@ header {
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
 }
+.abstract {
+    text-align: left;
+    width: 100%;
+    max-width: 1200px;  /* 比标题的800px稍宽 */
+    margin: 1.8rem auto;
+    padding: 0 20px;   /* 添加左右内边距，防止在小屏幕上贴边 */
+    box-sizing: border-box;
+}
+
+.abstract p {
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.6;
+    text-align: justify;
+    word-break: keep-all;
+    hyphens: manual;
+    overflow-wrap: normal;
+}
 
 .session {
-    background: #f9f9f9;
+    background: rgb(206, 224, 238);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 30px;
@@ -32,22 +50,75 @@ header {
 }
 
 .text-display {
-    white-space: pre-wrap;
+    position: relative;
+    padding-left: 12px; /* 替代原来的border */
     background: #f5f5f5;
+    white-space: pre-wrap;
     padding: 15px;
-    border-left: 3px solid #4CAF50;
-    font-family: monospace;
+    /* border-left: 3px solid #4CAF50; */
+    font-family: Tahoma;
+    font-size: rem;      /* 基础大小 */
+    line-height: 1.6;
+    text-align: justify;          /* 强制两端对齐 */
+    text-justify: inter-word; 
+    text-transform: uppercase;
+    /* font-variant-caps: all-small-caps; 可选：更美观的大写形式 */
+    /* 响应式调整 */
+    @media (min-width: 768px) {
+        font-size: 1.1rem; /* 桌面端稍大 */
+    }
+}
+.text-display::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #4CAF50;
+}
+.author-info {
+    /* 作者信息容器样式 */
+    margin: 1.5rem 0;
+    font-size: 1.1rem; /* 基础字体大小 */
+}
+
+.author-name {
+    font-size: 1.2rem; /* 作者姓名字体大小 */
+    font-weight: bold;
+    margin-bottom: 0.5rem; /* 姓名和单位之间的间距 */
+}
+
+.author-affiliation {
+    font-size: 1.2rem; /* 单位字体大小 */
+    font-weight: bold;
+    font-style: italic; /* 可选：单位用斜体 */
+}
+
+/* .audio-player {
+    background: white;
+    padding: 10px;
+    border-radius: 2px;
+} */
+
+.audio-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;  /* 如果想让标题和音频控件在同一行 */
 }
 
 .audio-player {
     background: white;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 2px;
+    margin: 0.2rem 0 1rem;
 }
 
-audio {
-    width: 100%;
-    margin-top: 10px;
+.audio-player audio {
+    width: 80%;       /* 宽度充满容器 */
+    height: 40px;      /* 增加高度（默认约30px） */
+    transform: scale(1.2); /* 整体放大1.2倍 */
+    transform-origin: left center; /* 从左侧开始放大 */
 }
 
 footer {
